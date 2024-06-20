@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'business-table',
+  selector: 'area-table',
   templateUrl: './visual-table.component.html',
   styleUrls: ['./visual-table.component.css']
 })
