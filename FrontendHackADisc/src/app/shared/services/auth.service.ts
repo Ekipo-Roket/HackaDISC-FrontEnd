@@ -30,7 +30,7 @@ export class AuthService {
       }
 
       console.log('Role:', this.UserLogged?.role);
-      if (this.UserLogged?.role.toUpperCase() === 'Administrador') {
+      if (this.UserLogged?.role === 'Administrador') {
         this.router.navigate(['/admin/dashboard']);
       }
       else if (this.UserLogged?.role === 'Jefe') {
