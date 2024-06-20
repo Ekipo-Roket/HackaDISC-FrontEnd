@@ -5,9 +5,11 @@
 
 
 :root{
-  --primary-blue: #05668D;
-  --secondary-blue: #427AA1;
+  --primary-blue: #162d56;
+  --secondary-blue: #05668D;
+  --terciary-blue:  #101c6b;
+  --primary-white: #f0f0f0;
   --secondary-white: #ebF2fA;
-  --primary-green: #679436;
+  --primary-green: #7eca26;
   --secondary-green: #a5e00a;
 }
