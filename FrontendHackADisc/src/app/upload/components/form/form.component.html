@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit()" #importForm="ngForm">
+  <input type="file" (change)="onFileChange($event)" required>
+  <button type="submit">Importar</button>
+</form>
+
+<div *ngIf="successMessage">{{ successMessage }}</div>

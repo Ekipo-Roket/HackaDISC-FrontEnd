@@ -1,0 +1,23 @@
+@import '../styles.css';
+
+
+hr{
+  background-color: var(--primary-blue);
+  height: 5px;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary-blue);
+  overflow: hidden;
+}
+
+.form{
+  width: auto;
+  padding: 40px;
+  background-color: var(--secondary-white);
+  border-radius: 12px;
+}

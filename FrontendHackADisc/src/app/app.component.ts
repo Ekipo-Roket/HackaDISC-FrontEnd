@@ -1,17 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { initFlowbite } from 'flowbite';
+  import { AfterViewInit, Component, OnInit } from '@angular/core';
+  import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+  import { Router } from '@angular/router';
+  import { initFlowbite } from 'flowbite';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
-})
-export class AppComponent implements OnInit{
-  title = 'FrontendHackADisc';
+  @Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+  })
+  export class AppComponent implements OnInit, AfterViewInit{
 
-  ngOnInit(): void {
-    initFlowbite();
+    async ngOnInit(): Promise<void> {
+      await this.initializeFlowbite();
+    }
+
+    async initializeFlowbite(): Promise<void> {
+      return new Promise<void>((resolve, reject) => {
+        try {
+          initFlowbite();
+
+          resolve();
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }
+
+    ngAfterViewInit(): void {
+      window.addEventListener('load', ()=>{
+        initFlowbite();
+      });
+    }
   }
-
-
-}

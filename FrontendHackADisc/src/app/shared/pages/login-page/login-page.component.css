@@ -1,0 +1,33 @@
+@import '../../../../styles.css';
+
+hr{
+  background-color: var(--primary-green2);
+  height: 5px;
+}
+
+button{
+  background-color: var(--primary-green2);
+  color: var(--primary-white);
+  transition: all 0.3s;
+}
+
+button:hover{
+  background-color: #63a11c;
+  transform: scale(1.05);
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--primary-blue);
+  overflow: hidden;
+}
+
+.form{
+  width: auto;
+  padding: 40px;
+  background-color: var(--neutral-white);
+  border-radius: 12px;
+}

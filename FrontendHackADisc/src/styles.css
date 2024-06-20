@@ -2,3 +2,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+:root{
+  --primary-green: #4CA650;
+  --primary-green2: #77b800;
+  --primary-green3: #7ECA27;
+  --primary-blue: #0A2E59;
+
+  --secundary-green: #EADFCA;
+  --secundary-green2: #D2F39B;
+  --secondary-blue: #EFFFFC;
+
+  --neutral-black: #000000;
+  --neutral-white: #FFFFFF;
+  --neutral-gray: #ADADAD;
+
+  --comp-purple: #7C477C;
+  --comp-purple2: #b485b7;
+  --comp-blue: #6DCFCB;
+  --comp-blue2: #21B6b8;
+  --comp-blue3: #58a8f7;
+  --comp-yellow: #fdf429;
+
+}
+
