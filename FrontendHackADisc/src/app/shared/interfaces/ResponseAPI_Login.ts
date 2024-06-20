@@ -9,11 +9,15 @@ export interface Authorization {
 }
 
 export interface User {
-  user_id:    string;
+  id:         number;
   user_name:  string;
-  role:       string;
+  role_id:    number;
+  role_name?: string;
   email:      string;
-  company_id: string;
-  area_id:    string;
-  post_id:    string;
+  post_id:    number;
+  company_id: number;
+  area_id:    number;
+  created_at: Date;
+  updated_at: Date;
+  area_name?: string;
 }

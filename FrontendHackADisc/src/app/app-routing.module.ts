@@ -6,7 +6,7 @@ import { LoginPageComponent } from './shared/pages/login-page/login-page.compone
 const routes: Routes = [
 
   {
-    path: '',
+    path: 'login',
     component: LoginPageComponent,
     pathMatch: 'full',
   },
@@ -23,8 +23,13 @@ const routes: Routes = [
     loadChildren: () => import('./business-manager/business-manager.module').then(m => m.BusinessManagerModule),
   },
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'login',
   },
 ];
 
