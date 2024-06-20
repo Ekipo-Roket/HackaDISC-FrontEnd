@@ -2,6 +2,8 @@ import { AuthService } from './../../../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { AreaService } from '../../services/area.service';
 import { ResponseWorkersArea } from '../../interfaces/ResponseWorkersArea';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { User } from 'src/app/shared/interfaces/ResponseAPI_Login';
 
 @Component({
   selector: 'area-table',
@@ -14,11 +16,17 @@ export class VisualTableComponent implements OnInit{
 
   company: string = '';
   dropdownRadioVisible = false;
-
   dropdownRadio:boolean = false;
-  Workers: ResponseWorkersArea[] = [];
+  dropDownCardVisible:boolean = false;
 
-  constructor(private AuthService:AuthService, private AreaService: AreaService) {
+  Workers: ResponseWorkersArea[] = [];
+  activeWorker: ResponseWorkersArea | null = null;
+
+
+  searchQuery: string = '';
+  searchResults: ResponseWorkersArea[] = [];
+
+  constructor(private AreaService: AreaService) {
     this.ngOnInit();
   }
 
@@ -26,7 +34,30 @@ export class VisualTableComponent implements OnInit{
     this.company = localStorage.getItem('UserLogged') ? JSON.parse(localStorage.getItem('UserLogged') || '{}').area_id : '';
     this.updateWorkers();
     this.updateEvaluations();
-    console.log('Trabajadores', this.Workers);
+    this.search();
+  }
+
+  search() {
+
+    if (!this.searchQuery) {
+      this.updateWorkers();
+      return;
+    }
+    this.searchResults = this.Workers.filter(worker =>
+      worker.user_name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+
+    this.Workers = this.searchResults;
+  }
+
+
+  dropDownCard(User: ResponseWorkersArea){
+    this.dropDownCardVisible = !this.dropDownCardVisible;
+
+    if (this.activeWorker === User)return;
+    this.activeWorker = User;
+
+
   }
 
   toggleDropdown() {
@@ -40,7 +71,6 @@ export class VisualTableComponent implements OnInit{
 
 
   updateWorkers(){
-    console.log('Actualizando trabajadores');
     this.AreaService.getWorkersArea().then((workers) => {
       this.Workers = workers;
     });
