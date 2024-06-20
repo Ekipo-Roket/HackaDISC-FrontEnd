@@ -16,29 +16,38 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  async login (form: any): Promise<ResponseLOGIN>{
-    try{
-      const data = await firstValueFrom(this.http.post<ResponseLOGIN>(this.baseUrl+'login', form.value, {headers: {'Content-Type': 'application/json'}}));
-      if(data.user){
+  async login(form: any): Promise<ResponseLOGIN> {
+    try {
+      console.log('Form data:', form.value);
+      const data = await firstValueFrom(this.http.post<ResponseLOGIN>(
+        this.baseUrl + 'login',
+        JSON.stringify(form.value),
+        { headers: { 'Content-Type': 'application/json' } }
+      ));
+
+      if (data.user) {
         this.UserLogged = data.user;
       }
-      switch(this.UserLogged?.role){
-        case 'Gerente':
-          this.router.navigateByUrl('/business/dashboard');
-          break;
-        case 'Jefe':
-          this.router.navigateByUrl('/area/dashboard');
-          break;
-        default:
-          this.router.navigateByUrl('/admin/login');
-          break;
+
+      console.log('Role:', this.UserLogged?.role);
+      if (this.UserLogged?.role.toUpperCase() === 'Administrador') {
+        this.router.navigate(['/admin/dashboard']);
+      }
+      else if (this.UserLogged?.role === 'Jefe') {
+        this.router.navigate(['/area/dashboard']);
+      }
+      else if (this.UserLogged?.role === 'Gerente') {
+        this.router.navigate(['/business/dashboard']);
+      }
+      else{
+        this.router.navigate(['/']);
       }
 
       return Promise.resolve(data);
-    } catch (error:any){
-      console.log('Error en el login', error);
-      let e = error as HttpErrorResponse
+    } catch (error: any) {
+      console.error('Error en el login', error);
       return Promise.reject(error);
     }
   }
+
 }

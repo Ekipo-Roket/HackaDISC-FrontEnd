@@ -30,7 +30,12 @@ export class LoginPageComponent {
 
   async onSubmit(){
 
-    await this.authService.login(this.forms.value);
+    if(this.forms.invalid){
+      this.forms.markAllAsTouched();
+      return;
+    }
+
+    await this.authService.login(this.forms);
 
     return;
 
