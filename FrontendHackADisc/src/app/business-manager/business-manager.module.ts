@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { BusinessManagerRoutingModule } from './business-manager-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { VisualTableComponent } from './components/visual-table/visual-table.component';
+import { VisualTableComponent } from '../area-manager/components/visual-table/visual-table.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
 
 

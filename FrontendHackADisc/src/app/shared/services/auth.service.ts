@@ -27,10 +27,10 @@ export class AuthService {
           this.router.navigateByUrl('/business/dashboard');
           break;
         case 'Jefe':
-          this.router.navigateByUrl('area/dashboard');
+          this.router.navigateByUrl('/area/dashboard');
           break;
         default:
-          this.router.navigateByUrl('admin/login');
+          this.router.navigateByUrl('/admin/login');
           break;
       }
 
