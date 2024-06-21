@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class EvaluationsComponent {
 
+  condition!: string;
+
+  constructor() {
+    scrollTo(0, 0);
+  }
 }

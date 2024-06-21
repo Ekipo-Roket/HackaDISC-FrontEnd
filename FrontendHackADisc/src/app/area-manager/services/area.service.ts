@@ -17,6 +17,8 @@ export class AreaService {
   WorkersArea : ResponseWorkersArea[] = [];
   Evaluations: ResponseEvaluations[] = [];
 
+  UserToEvaluate: ResponseWorkersArea | null = null;
+
  // Area: string;
   constructor(private AuthService:AuthService, private HttpClient:HttpClient ){
     this.UserLogged = localStorage.getItem('UserLogged') ? JSON.parse(localStorage.getItem('UserLogged') || '{}') : {};
@@ -48,6 +50,14 @@ export class AreaService {
 
   getUserLogger(): User{
     return this.UserLogged;
+  }
+
+  setEvaluationUser(evaluation: ResponseWorkersArea){
+    this.UserToEvaluate = evaluation;
+  }
+
+  getEvaluationUser(): ResponseWorkersArea | null{
+    return this.UserToEvaluate;
   }
 
 }
