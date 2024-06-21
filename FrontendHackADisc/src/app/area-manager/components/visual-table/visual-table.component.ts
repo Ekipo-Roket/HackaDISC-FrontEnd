@@ -2,46 +2,49 @@ import { AuthService } from './../../../shared/services/auth.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AreaService } from '../../services/area.service';
 import { ResponseWorkersArea } from '../../interfaces/ResponseWorkersArea';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { User } from 'src/app/shared/interfaces/ResponseAPI_Login';
 import { Router } from '@angular/router';
-import { query } from '@angular/animations';
-
+import { Stat } from 'src/app/shared/interfaces/ResponseStat';
 @Component({
   selector: 'area-table',
   templateUrl: './visual-table.component.html',
   styleUrls: ['./visual-table.component.css']
 })
-export class VisualTableComponent implements OnInit, AfterViewInit{
+export class VisualTableComponent implements OnInit {
 
-  lastUpdate: string = "Recientes";
+  lastUpdate: string = "Evaluado";
 
   company: string = '';
   dropdownRadioVisible = false;
   dropDownCardVisible = false;
   Workers: ResponseWorkersArea[] = [];
+  WorkersEvaluated: ResponseWorkersArea[] = [];
+  WorkersInterventioned: ResponseWorkersArea[] = [];
+  WorkersOnInter: ResponseWorkersArea[] = [];
+
   activeWorker: ResponseWorkersArea | null = null;
   evaluationUser: ResponseWorkersArea | null = null;
 
+  Stats: Stat[] = [];
   showModalChange: boolean = false;
 
   searchQuery: string = '';
   searchResults: ResponseWorkersArea[] = [];
 
-  constructor(private AreaService: AreaService, private router:Router) {
+
+  criticalWorkersCounter: number = 0;
+  warningWorkersCounter: number = 0;
+
+  constructor(private AreaService: AreaService, private router: Router) {
   }
 
   ngOnInit(): void {
     this.company = localStorage.getItem('UserLogged') ? JSON.parse(localStorage.getItem('UserLogged') || '{}').area_id : '';
-    this.updateWorkers();
     this.search();
+    this.getStats();
+
+    this.updateStat(this.lastUpdate);
   }
 
-  ngAfterViewInit(): void {
-    this.AreaService.getWorkersArea().then((workers) => {
-      this.Workers = workers;
-    });
-  }
 
   search() {
     if (!this.searchQuery) {
@@ -56,56 +59,111 @@ export class VisualTableComponent implements OnInit, AfterViewInit{
   }
 
 
-  dropDownCard(User: ResponseWorkersArea){
+  dropDownCard(User: ResponseWorkersArea) {
     this.dropDownCardVisible = !this.dropDownCardVisible;
-
-    if (this.activeWorker === User)return;
+    if (this.activeWorker === User) return;
     this.activeWorker = User;
-
-
   }
 
   toggleDropdown() {
     this.dropdownRadioVisible = !this.dropdownRadioVisible;
   }
 
-  updateDate(date: string) {
-    this.lastUpdate = date;
+  updateStat(stat: string) {
+    this.lastUpdate = stat;
     this.dropdownRadioVisible = false;
+
+    if (this.lastUpdate === 'Evaluado') {
+      this.Workers = this.WorkersEvaluated;
+    } else if (this.lastUpdate === 'En intervencion') {
+      this.Workers = this.WorkersOnInter
+    } else if (this.lastUpdate === 'Intervenido'){
+      this.Workers = this.WorkersInterventioned;
+    } else{
+      this.updateWorkers();
+    }
+  }
+
+  async getStats() {
+
+    let newStat:any = []
+
+    await this.AreaService.getStats().then((stats) => {
+      newStat = stats;
+    });
+
+    this.Stats = newStat[0];
+
+    this.Workers.forEach(worker => {
+      if(worker.stat_id === this.Stats[0].id) {
+        this.WorkersEvaluated.push(worker);
+      } else if(worker.stat_id === this.Stats[1].id) {
+        this.WorkersOnInter.push(worker);
+      } else{
+        this.WorkersInterventioned.push(worker);
+      }
+    })
+
+    console.log(this.WorkersEvaluated);
+    console.log(this.WorkersOnInter);
+    console.log(this.WorkersInterventioned);
 
 
   }
 
-
-  updateWorkers(){
+  updateWorkers() {
     this.AreaService.getWorkersArea().then((workers) => {
       this.Workers = workers;
     });
+    this.Workers.forEach(worker => {
+      if(worker.stat_id === 1) {
+        worker.stat_name = this.Stats[0].name_stat;
+      } else if(worker.stat_id === 2) {
+        worker.stat_name = this.Stats[1].name_stat;
+      } else{
+        worker.stat_name = this.Stats[2].name_stat;
+      }
+    });
   }
-  compareStats(recent: number, old: number):number{
-    if (recent === old){
+  compareStats(recent: number, old: number): number {
+    if (recent === old) {
       return 0;
     }
-    else if (recent < old){
+    else if (recent < old) {
       return -1;
     }
-    else{
+    else {
       return 1
     }
-
   }
 
-  evaluationCard(User: ResponseWorkersArea){
+  evaluationCard(User: ResponseWorkersArea) {
     this.AreaService.setEvaluationUser(User);
     this.router.navigateByUrl('/area/evaluations');
   }
 
-  openModalChange(User: ResponseWorkersArea){
+  openModalChange(User: ResponseWorkersArea) {
     this.showModalChange = true;
     this.evaluationUser = User;
   }
 
-  closeModalChange(){
+  closeModalChange() {
     this.showModalChange = false;
+  }
+
+  getClassByDate(date: string): string {
+    const createdAt = new Date(date);
+    const now = new Date();
+    const diffTime = Math.abs(now.getTime() - createdAt.getTime());
+    const diffMonths = diffTime / (1000 * 60 * 60 * 24 * 30); // Convertir a meses
+
+    if (diffMonths > 6) {
+      return 'red-background';
+    } else if (diffMonths > 4) {
+      return 'yellow-background';
+    } else {
+
+      return '';
+    }
   }
 }

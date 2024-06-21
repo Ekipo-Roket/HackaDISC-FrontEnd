@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadModule } from './upload/upload.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartComponent } from './shared/components/chart/chart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,50 +22,12 @@
           class="w-48 dropdown-menu absolute z-50 bg-white divide-y divide-gray-100 rounded-lg shadow-lg">
           <ul class="p-3 space-y-1 text-sm cursor-pointer text-gray-700 " aria-labelledby="dropdownRadioButton">
             <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input (click)="updateDate('Recientes')" id="filter-radio-example-1" type="radio" value=""
+              <div class="flex items-center p-2 rounded hover:bg-gray-100" *ngFor="let stat of Stats">
+                <input (click)="updateStat(stat.name_stat)" id="filter-radio-example-1" type="radio" value=""
                   name="filter-radio"
-                  class="w-4 h-4 checked text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  class="w-4 h-4 checked text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500  focus:ring-2 ">
                 <label for="filter-radio-example-1"
-                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Recientes</label>
-              </div>
-            </li>
-            <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input (click)="updateDate('Últimos 7 dias')" id="filter-radio-example-2" type="radio" value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="filter-radio-example-2"
-                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Últimos 7
-                  dias</label>
-              </div>
-            </li>
-            <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input (click)="updateDate('Últimos 30 dias')" id="filter-radio-example-3" type="radio" value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="filter-radio-example-3"
-                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Últimos 30
-                  dias</label>
-              </div>
-            </li>
-            <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input (click)="updateDate('Mes pasado')" id="filter-radio-example-4" type="radio" value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="filter-radio-example-4"
-                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Mes pasado</label>
-              </div>
-            </li>
-            <li>
-              <div class="flex items-center p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
-                <input (click)="updateDate('Hace un año')" id="filter-radio-example-5" type="radio" value=""
-                  name="filter-radio"
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                <label for="filter-radio-example-5"
-                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">Hace un año</label>
+                  class="w-full ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{stat.name_stat}}</label>
               </div>
             </li>
           </ul>
@@ -74,8 +36,8 @@
         <label for="table-search" class="sr-only"></label>
         <div class="relative">
           <div class="absolute inset-y-0 left-0 rtl:inset-r-0 rtl:right-0 flex items-center ps-3 pointer-events-none">
-            <svg class="w-5 h-5 text-gray-500 " aria-hidden="true" fill="currentColor"
-              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-5 h-5 text-gray-500 " aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                 clip-rule="evenodd"></path>
@@ -86,16 +48,24 @@
             placeholder="Buscar trabajador/a">
         </div>
         <!-- Tooltip -->
-    <div class="flex items-center justify-center">
-      <button data-tooltip-target="tooltip-default" type="button">
-        <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#0A2E59"></path> </g></svg>
-      </button>
-      <div id="tooltip-default" role="tooltip"
-        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-        Seleccione un trabajador para ver sus evaluaciones
-        <div class="tooltip-arrow" data-popper-arrow></div>
-      </div>
-    </div>
+        <div class="flex items-center justify-center">
+          <button data-tooltip-target="tooltip-default" type="button">
+            <svg width="25px" height="25px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+              <g id="SVGRepo_iconCarrier">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z"
+                  fill="#0A2E59"></path>
+              </g>
+            </svg>
+          </button>
+          <div id="tooltip-default" role="tooltip"
+            class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Seleccione un trabajador para ver sus evaluaciones
+            <div class="tooltip-arrow" data-popper-arrow></div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -128,6 +98,9 @@
           </th>
           <th scope="col" class="px-6 py-3">
             Trabajo sobre presión
+          </th>
+          <th scope="col" class="px-6 py-3">
+            Fecha ingreso
           </th>
           <th scope="col" class="px-6 py-3">
             Acción
@@ -414,6 +387,12 @@
 
           </td>
 
+          <!-- Fecha ingreso -->
+          <td class="px-6 py-4" [ngClass]="getClassByDate(workers.created_at.toString())">
+            {{ workers.created_at | date: 'dd/MM/yyyy' }}
+          </td>
+
+          <!-- Acción -->
           <td class="px-6 py-4">
             <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Aprobar</a>
           </td>
@@ -431,7 +410,7 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
             </svg>
-            <span class="sr-only">Close modal</span>
+            <span class="sr-only">Cerrar modal</span>
           </button>
           <div class="p-4 md:p-5 text-center">
             <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
@@ -439,18 +418,83 @@
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
             </svg>
-            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">¿Desea ver las evaluaciones del
-              trabajador? {{evaluationUser?.user_name}}</h3>
-            <button (click)="evaluationCard(evaluationUser!)" type="button"
-              class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-              Si, estoy seguro
-            </button>
-            <button (click)="closeModalChange()" type="button"
-              class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Volver</button>
+            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Resumen del Trabajador:
+              {{evaluationUser?.user_name}}</h3>
+
+            <div class="mb-4 text-left">
+              <p class="font-medium text-gray-600 dark:text-gray-300">Nombre: <span
+                  class="font-normal">{{evaluationUser?.user_name}}</span></p>
+              <p class="font-medium text-gray-600 dark:text-gray-300">Rol: <span
+                  class="font-normal">{{evaluationUser?.role}}</span></p>
+              <p class="font-medium text-gray-600 dark:text-gray-300">Área de Trabajo: <span
+                  class="font-normal">{{evaluationUser?.area_name}}</span></p>
+              <p class="font-medium text-gray-600 dark:text-gray-300">Puesto: <span
+                  class="font-normal">{{evaluationUser?.post_name}}</span></p>
+            </div>
+
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50 dark:bg-gray-700">
+                  <tr>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Fecha de Evaluación
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Adaptabilidad al Cambio
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Conducta Segura
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Energía Dinámica
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Efectividad Personal
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Iniciativa
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Trabajo Bajo Presión
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                  <tr *ngFor="let evaluation of evaluationUser?.evaluations">
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.date | date }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.adaptability_to_change}}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.safe_conduct }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.dynamsim_energy }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.personal_effectiveness }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.initiative }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ evaluation.working_under_pressure }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="mt-6 flex flex-wrap gap-5 justify-center">
+              <button (click)="evaluationCard(evaluationUser!)" type="button"
+                class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Ver evaluaciones
+              </button>
+              <button (click)="closeModalChange()" type="button"
+                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                Cerrar
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
 
   </div>
 </div>

@@ -11,6 +11,8 @@ export interface ResponseWorkersArea {
   created_at:   Date;
   updated_at:   Date;
   evaluations:  Evaluation[];
+  stat_id:      number;
+  stat_name?:    string;
 }
 
 export interface Evaluation {
