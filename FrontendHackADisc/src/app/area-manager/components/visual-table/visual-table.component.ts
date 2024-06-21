@@ -60,7 +60,6 @@ export class VisualTableComponent implements OnInit {
     this.searchResults = this.Workers.filter(worker =>
       worker.user_name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
-
     this.Workers = this.searchResults;
   }
 
@@ -102,19 +101,16 @@ export class VisualTableComponent implements OnInit {
 
     this.Workers.forEach(worker => {
       if(worker.stat_id === this.Stats[0].id) {
+        worker.stat_name = this.Stats[0].name_stat;
         this.WorkersEvaluated.push(worker);
       } else if(worker.stat_id === this.Stats[1].id) {
+        worker.stat_name = this.Stats[1].name_stat;
         this.WorkersOnInter.push(worker);
       } else{
+        worker.stat_name = this.Stats[2].name_stat;
         this.WorkersInterventioned.push(worker);
       }
     })
-
-    console.log(this.WorkersEvaluated);
-    console.log(this.WorkersOnInter);
-    console.log(this.WorkersInterventioned);
-
-
   }
 
   updateWorkers() {
@@ -133,24 +129,18 @@ export class VisualTableComponent implements OnInit {
   }
 
 
+  compareStats(recent: number, old: number): number {
+    if (recent === old) return 0;
+    else if (recent < old) return -1;
+    else return 1;
+  }
+
+
   aproveWorker(id: number){
     this.ChangeStatusService.changeToAproved(id);
-
   }
 
-  compareStats(recent: number, old: number): number {
-    if (recent === old) {
-
-      return 0;
-    }
-    else if (recent < old) {
-      return -1;
-    }
-    else {
-      return 1
-    }
-  }
-
+ 
   evaluationCard(User: ResponseWorkersArea) {
     this.AreaService.setEvaluationUser(User);
     this.router.navigateByUrl('/area/evaluations');
