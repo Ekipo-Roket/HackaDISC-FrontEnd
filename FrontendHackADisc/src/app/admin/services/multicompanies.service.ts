@@ -5,6 +5,7 @@ import {AuthService} from '../../shared/services/auth.service';
 import {HttpClient} from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { ResponseCompany } from '../interfaces/ResponseCompany';
+import { ResponseCompanyStats } from '../interfaces/ResponseCompanyStats';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,12 @@ export class MulticompaniesService {
   }
   async getCompany(id: number): Promise<ResponseCompany> {
     const company = await firstValueFrom(this.HttpClient.get<ResponseCompany>(this.privateUrl + 'multicompany/' + id));
+    return Promise.resolve(company);
+  }
+
+  async getCompanyStats(id: number): Promise<ResponseCompanyStats> {
+    // CAMBIAR RUTA, PROVISIONALEMNTE USAR LA RUTA DE EVALUACIONS POR ID DE TRABAJADOR
+    const company = await firstValueFrom(this.HttpClient.get<ResponseCompanyStats>(this.privateUrl + `company/stats/${id}`));
     return Promise.resolve(company);
   }
 

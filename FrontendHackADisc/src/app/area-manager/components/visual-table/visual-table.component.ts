@@ -37,7 +37,7 @@ export class VisualTableComponent implements OnInit {
   criticalWorkersCounter: number = 0;
   warningWorkersCounter: number = 0;
 
- 
+
   constructor(private AreaService: AreaService, private ChangeStatusService: ChangeStatusService, private router:Router) {
     this.ngOnInit();
 
@@ -132,14 +132,14 @@ export class VisualTableComponent implements OnInit {
     });
   }
 
-  compareStats(recent: number, old: number): number {
-    if (recent === old) {
 
   aproveWorker(id: number){
     this.ChangeStatusService.changeToAproved(id);
 
   }
 
+  compareStats(recent: number, old: number): number {
+    if (recent === old) {
 
       return 0;
     }
