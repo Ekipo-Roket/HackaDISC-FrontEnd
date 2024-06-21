@@ -12,7 +12,6 @@ export class EvaluationsCardComponent implements OnInit, AfterViewInit {
 
   User: ResponseWorkersArea | null = null;
 
-  // Define the parameters and corresponding properties in the Evaluation interface
   evaluationParameters: { displayName: string, property: keyof Evaluation }[] = [
     { displayName: 'Adaptabilidad al cambio', property: 'adaptability_to_change' },
     { displayName: 'Conducta segura', property: 'safe_conduct' },

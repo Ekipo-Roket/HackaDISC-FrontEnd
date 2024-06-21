@@ -1,5 +1,14 @@
-
+@import '../../../../styles.css';
 
 .button:hover{
   transform: scale(1.2);
+}
+
+.yellow-background {
+  font-weight: 500;
+  color: #fdf429;
+}
+
+.red-background {
+  color: red;
 }

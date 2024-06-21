@@ -12,15 +12,11 @@
     <li class="me-2" (click)="setCondition('Evaluaciones')">
       <button type="button" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 ">Evaluaciones</button>
     </li>
-    <li class="me-2" (click)="setCondition('Premium')">
-      <button type="button" role="tab" aria-controls="statistics"
-        class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 ">Facts</button>
-    </li>
+
   </ul>
 
   <div class="p-4 bg-white md:p-8" id="General">
-    <h2 class="mb-3 text-3xl font-bold tracking-tight text-gray-800">Powering innovation & trust at 200,000+ companies
-      worldwide</h2>
+    <h2 class="mb-3 text-3xl font-bold tracking-tight text-gray-800">{{User?.user_name}}</h2>
     <p class="mb-3 text-gray-500">Empower Developers, IT Ops, and business teams to collaborate at high velocity.
       Respond to changes and deliver great customer and employee service experiences fast.</p>
     <a href="#" class="inline-flex items-center font-medium text-blue-600 hover:text-blue-800 ">
@@ -29,6 +25,102 @@
         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
       </svg>
     </a>
+
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+          <tr>
+              <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                  Product name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Color
+              </th>
+              <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                  Category
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Price
+              </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  Apple MacBook Pro 17"
+              </th>
+              <td class="px-6 py-4">
+                  Silver
+              </td>
+              <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  Laptop
+              </td>
+              <td class="px-6 py-4">
+                  $2999
+              </td>
+          </tr>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  Microsoft Surface Pro
+              </th>
+              <td class="px-6 py-4">
+                  White
+              </td>
+              <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  Laptop PC
+              </td>
+              <td class="px-6 py-4">
+                  $1999
+              </td>
+          </tr>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  Magic Mouse 2
+              </th>
+              <td class="px-6 py-4">
+                  Black
+              </td>
+              <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  Accessories
+              </td>
+              <td class="px-6 py-4">
+                  $99
+              </td>
+          </tr>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  Google Pixel Phone
+              </th>
+              <td class="px-6 py-4">
+                  Gray
+              </td>
+              <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  Phone
+              </td>
+              <td class="px-6 py-4">
+                  $799
+              </td>
+          </tr>
+          <tr>
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  Apple Watch 5
+              </th>
+              <td class="px-6 py-4">
+                  Red
+              </td>
+              <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  Wearables
+              </td>
+              <td class="px-6 py-4">
+                  $999
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
   </div>
 
   <div class="p-4" style="background-color: var(--secondary-green2);" id="services">
@@ -55,7 +147,7 @@
                 {{ param.displayName }}
               </th>
               <td *ngFor="let evaluation of User?.evaluations" class="px-6 py-4">
-                {{ evaluation[param.property] }}
+                {{ evaluation[param.property]}}
               </td>
             </tr>
           </tbody>
