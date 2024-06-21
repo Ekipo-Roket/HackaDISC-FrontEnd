@@ -26,5 +26,8 @@ export class SidebarComponent implements OnInit{
   goEvaluation(){
     this.Router.navigate(['/area/evaluations']);
   }
+  goDashboardBusiness(){
+    this.Router.navigate(['/business/dashboard']);
+  }
 
 }

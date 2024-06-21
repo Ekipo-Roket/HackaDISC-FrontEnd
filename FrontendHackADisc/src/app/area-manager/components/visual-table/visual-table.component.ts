@@ -14,7 +14,7 @@ import { Stat } from 'src/app/shared/interfaces/ResponseStat';
 })
 export class VisualTableComponent implements OnInit {
 
-  lastUpdate: string = "Evaluado";
+  lastUpdate: string = "Todos";
 
   company: string = '';
   dropdownRadioVisible = false;
@@ -80,10 +80,13 @@ export class VisualTableComponent implements OnInit {
 
     if (this.lastUpdate === 'Evaluado') {
       this.Workers = this.WorkersEvaluated;
+      console.log(this.WorkersEvaluated);
     } else if (this.lastUpdate === 'En intervencion') {
       this.Workers = this.WorkersOnInter
+      console.log(this.WorkersOnInter);
     } else if (this.lastUpdate === 'Intervenido'){
       this.Workers = this.WorkersInterventioned;
+      console.log(this.WorkersInterventioned);
     } else{
       this.updateWorkers();
     }

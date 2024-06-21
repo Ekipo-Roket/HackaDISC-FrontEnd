@@ -3,18 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { BusinessManagerRoutingModule } from './business-manager-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { VisualTableComponent } from '../area-manager/components/visual-table/visual-table.component';
 import { PrincipalComponent } from './pages/principal/principal.component';
+import { VisualTableComponent } from './components/visual-table/visual-table.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
   declarations: [
-    PrincipalComponent
+    PrincipalComponent,
+    VisualTableComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    BusinessManagerRoutingModule
+    BusinessManagerRoutingModule,
+    FormsModule
   ]
 })
 export class BusinessManagerModule { }
