@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { AuthService } from './../../../shared/services/auth.service';
-import { ResponseWorkersArea } from 'src/app/area-manager/interfaces/ResponseWorkersArea';
 import { ChangeStatusService } from '../../../shared/services/change-status.service';
-import { WorkersService } from '../../services/workers.service';
+import { MulticompaniesService } from '../../services/multicompanies.service';
+import { ResponseMulticompanies } from '../../interfaces/ResponseMulticompanies';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-visual-table',
@@ -21,28 +22,27 @@ export class VisualTableComponent {
   dropdownRadioVisible = false;
 
   dropdownRadio:boolean = false;
-  Workers: ResponseWorkersArea[] = [];
+  Companies: ResponseMulticompanies[] = [];
 
 
   searchQuery: string = '';
-  searchResults: ResponseWorkersArea[] = [];
+  searchResults: ResponseMulticompanies[] = [];
 
-  constructor(private AuthService:AuthService, private WorkersService: WorkersService, private ChangeStatusService: ChangeStatusService) {
+  constructor(private router: Router,private AuthService:AuthService, private MulticompaniesService: MulticompaniesService, private ChangeStatusService: ChangeStatusService) {
     this.ngOnInit();
+
 
   }
 
   ngOnInit(): void {
     this.company = localStorage.getItem('UserLogged') ? JSON.parse(localStorage.getItem('UserLogged') || '{}').area_id : '';
-    this.updateWorkers();
-
-    console.log('Trabajadores', this.Workers);
+    this.updateCompanies();
   }
 
-  get paginatedWorkers() {
+  get paginatedCompanies() {
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.Workers.slice(startIndex, endIndex);
+    return this.Companies.slice(startIndex, endIndex);
   }
   setPage(pageNumber: number) {
     console.log('Pagina actual', pageNumber);
@@ -60,37 +60,31 @@ export class VisualTableComponent {
   search() {
 
     if (!this.searchQuery) {
-      this.updateWorkers();
+      this.updateCompanies();
       return;
     }
-    this.searchResults = this.Workers.filter(worker =>
-      worker.user_name.toLowerCase().includes(this.searchQuery.toLowerCase())
+    this.searchResults = this.Companies.filter(company =>
+      company.main_company_name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+      company.sub_company_name.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
 
-    this.Workers = this.searchResults;
+    this.Companies = this.searchResults;
+  }
+
+  navigateToCompanyStats(id: number) {
+    this.router.navigate(['/admin/company-stats/', id]);
   }
 
 
-  toggleDropdown() {
-    this.dropdownRadioVisible = !this.dropdownRadioVisible;
-  }
 
-  updateDate(date: string) {
-    this.lastUpdate = date;
-    this.dropdownRadioVisible = false;
-  }
-
-
-  updateWorkers(){
-    console.log('Actualizando trabajadores');
-    this.WorkersService.getWorkers().then((workers) => {
-      this.Workers = workers;
-      this.totalItems = workers.length;
+  updateCompanies(){
+    this.MulticompaniesService.getCompanies().then((companies) => {
+      this.Companies = companies;
+      this.totalItems = companies.length;
+      this.Companies.sort((a, b) => a.main_company_name.localeCompare(b.main_company_name));
     });
 
-
-
-
+    console.log('Compañias', this.Companies);
   }
 
 }

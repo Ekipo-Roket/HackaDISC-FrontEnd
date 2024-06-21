@@ -1,5 +1,5 @@
 export interface ResponseWorkersArea {
-  user_id:      number;
+  id:      number;
   company_id:   number;
   area_id:      number;
   area_name:    string;

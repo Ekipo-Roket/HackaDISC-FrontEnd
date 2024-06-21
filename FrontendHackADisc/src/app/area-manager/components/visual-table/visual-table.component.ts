@@ -2,6 +2,7 @@ import { AuthService } from './../../../shared/services/auth.service';
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AreaService } from '../../services/area.service';
 import { ResponseWorkersArea } from '../../interfaces/ResponseWorkersArea';
+import { ChangeStatusService } from '../../../shared/services/change-status.service';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { User } from 'src/app/shared/interfaces/ResponseAPI_Login';
 import { Router } from '@angular/router';
@@ -28,7 +29,8 @@ export class VisualTableComponent implements OnInit, AfterViewInit{
   searchQuery: string = '';
   searchResults: ResponseWorkersArea[] = [];
 
-  constructor(private AreaService: AreaService, private router:Router) {
+  constructor(private AuthService:AuthService, private AreaService: AreaService, private ChangeStatusService: ChangeStatusService, private router:Router) {
+    this.ngOnInit();
   }
 
   ngOnInit(): void {
@@ -82,6 +84,11 @@ export class VisualTableComponent implements OnInit, AfterViewInit{
       this.Workers = workers;
     });
   }
+  aproveWorker(id: number){
+    this.ChangeStatusService.changeToAproved(id);
+
+  }
+
   compareStats(recent: number, old: number):number{
     if (recent === old){
       return 0;
