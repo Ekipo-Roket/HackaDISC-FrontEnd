@@ -21,6 +21,7 @@
         <div id="dropdownRadio" *ngIf="dropdownRadioVisible"
           class="w-48 dropdown-menu absolute z-50 bg-white divide-y divide-gray-100 rounded-lg shadow-lg">
           <ul class="p-3 space-y-1 text-sm cursor-pointer text-gray-700 " aria-labelledby="dropdownRadioButton">
+
             <li>
               <div class="flex items-center p-2 rounded hover:bg-gray-100" *ngFor="let stat of Stats">
                 <input (click)="updateStat(stat.name_stat)" id="filter-radio-example-1" type="radio" value=""

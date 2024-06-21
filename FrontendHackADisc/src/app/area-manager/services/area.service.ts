@@ -25,7 +25,7 @@ export class AreaService {
   }
 
   async getWorkersArea(): Promise<ResponseWorkersArea[]> {
-    const workers = await firstValueFrom(this.HttpClient.get<ResponseWorkersArea[]>(this.privateUrl + 'workers/area/' + this.UserLogged.area_id));
+    const workers = await firstValueFrom(this.HttpClient.get<ResponseWorkersArea[]>(this.privateUrl + 'workers/area/' + this.UserLogged.area_id+'/'+this.UserLogged.company_id));
     return Promise.resolve(workers);
   }
 

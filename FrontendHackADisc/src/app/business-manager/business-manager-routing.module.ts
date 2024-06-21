@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PrincipalComponent } from './pages/principal/principal.component';
-import { VisualTableComponent } from '../area-manager/components/visual-table/visual-table.component';
+import { VisualTableComponent } from './components/visual-table/visual-table.component';
 
 const routes: Routes = [{
 
@@ -10,7 +10,7 @@ const routes: Routes = [{
   children: [
     {
       path: 'dashboard',
-      component: VisualTableComponent
+      component:  VisualTableComponent
     }
   ]
 }];
