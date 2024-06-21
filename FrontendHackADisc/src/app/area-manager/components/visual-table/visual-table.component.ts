@@ -134,8 +134,8 @@ export class VisualTableComponent implements OnInit {
     else return 1;
   }
 
-  aproveWorker(id: number){
-    this.ChangeStatusService.changeToAproved(id);
+  aproveWorker(User: ResponseWorkersArea){
+    this.ChangeStatusService.changeToAproved(User);
   }
 
 
