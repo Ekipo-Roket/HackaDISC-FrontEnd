@@ -1,0 +1,233 @@
+<div class="relative overflow-x-auto sm:rounded-lg">
+  <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+      <thead class="text-xs items-center justify-center text-gray-700 text-left uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3 ">Adaptabilidad al cambio</th>
+          <th scope="col" class="px-6 py-3">Conducta Segura</th>
+          <th scope="col" class="px-6 py-3">Energía dinámica</th>
+          <th scope="col" class="px-6 py-3">Eficacia personal</th>
+          <th scope="col" class="px-6 py-3">Iniciativa</th>
+          <th scope="col" class="px-6 py-3">Trabajo bajo presión</th>
+        </tr>
+      </thead>
+      <tbody >
+        <tr class=" bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <!-- Adaptabilidad -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.adaptability_to_change_before,
+              Evaluations.adaptability_to_change_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.adaptability_to_change_before,
+              Evaluations.adaptability_to_change_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.adaptability_to_change_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.adaptability_to_change_before,
+                Evaluations.adaptability_to_change_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.adaptability_to_change_before,
+                Evaluations.adaptability_to_change_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+
+          <!-- Conducta segura -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.safe_conduct_before,
+              Evaluations.safe_conduct_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.safe_conduct_before,
+              Evaluations.safe_conduct_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.safe_conduct_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.safe_conduct_before,
+                Evaluations.safe_conduct_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.safe_conduct_before,
+                Evaluations.safe_conduct_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+
+          <!-- Energía dinámica -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.dynamsim_energy_before,
+              Evaluations.dynamsim_energy_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.dynamsim_energy_before,
+              Evaluations.dynamsim_energy_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.dynamsim_energy_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.dynamsim_energy_before,
+                Evaluations.dynamsim_energy_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.dynamsim_energy_before,
+                Evaluations.dynamsim_energy_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+
+          <!-- Eficacia personal -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.personal_effectiveness_before,
+              Evaluations.personal_effectiveness_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.personal_effectiveness_before,
+              Evaluations.personal_effectiveness_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.personal_effectiveness_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.personal_effectiveness_before,
+                Evaluations.personal_effectiveness_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.personal_effectiveness_before,
+                Evaluations.personal_effectiveness_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+
+          <!-- Iniciativa -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.initiative_before,
+              Evaluations.initiative_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.initiative_before,
+              Evaluations.initiative_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.initiative_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.initiative_before,
+                Evaluations.initiative_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.initiative_before,
+                Evaluations.initiative_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+
+          <!-- Trabajo bajo presión -->
+          <td class="px-6 py-4" [ngStyle]="{
+            'color': compareStats(
+              Evaluations.working_under_pressure_before,
+              Evaluations.working_under_pressure_after
+            ) === 1 ? 'var(--primary-green3)' : compareStats(
+              Evaluations.working_under_pressure_before,
+              Evaluations.working_under_pressure_after
+            ) === -1 ? '#ff6161' : ''
+          }">
+            <div class="flex flex-wrap items-center justify-center">
+              {{ Evaluations.working_under_pressure_difference || 'N/A' }} %
+              <svg *ngIf="compareStats(
+                Evaluations.working_under_pressure_before,
+                Evaluations.working_under_pressure_after
+              ) === 1" width="25px" height="25px" style="stroke: var(--primary-green3);" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+              <svg *ngIf="compareStats(
+                Evaluations.working_under_pressure_before,
+                Evaluations.working_under_pressure_after
+              ) === -1" width="25px" height="25px" style="stroke: #ff6161;" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(180)">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.8160000000000001"></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12 6V18M12 6L7 11M12 6L17 11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+              </svg>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div id="chartdiv" style="width: 500; height: 400px"></div>
+

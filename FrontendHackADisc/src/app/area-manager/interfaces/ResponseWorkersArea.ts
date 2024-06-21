@@ -13,6 +13,7 @@ export interface ResponseWorkersArea {
   evaluations:  Evaluation[];
   stat_id:      number;
   stat_name?:    string;
+  subcompany_name: string;
 }
 
 export interface Evaluation {

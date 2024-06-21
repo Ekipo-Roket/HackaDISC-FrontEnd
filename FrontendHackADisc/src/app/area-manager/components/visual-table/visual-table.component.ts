@@ -128,6 +128,7 @@ export class VisualTableComponent implements OnInit {
     });
   }
 
+
   compareStats(recent: number, old: number): number {
     if (recent === old) return 0;
     else if (recent < old) return -1;

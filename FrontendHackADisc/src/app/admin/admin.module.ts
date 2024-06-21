@@ -7,12 +7,14 @@ import { PrincipalComponent } from './pages/principal/principal.component';
 import { VisualTableComponent } from './components/visual-table/visual-table.component';
 import { FormsModule } from '@angular/forms';
 import { CompanyStatsComponent } from './pages/company-stats/company-stats.component';
+import { CompanyStatsChartComponent } from './components/company-stats-chart/company-stats-chart.component';
 
 @NgModule({
   declarations: [
     PrincipalComponent,
     VisualTableComponent,
     CompanyStatsComponent,
+    CompanyStatsChartComponent,
   ],
   imports: [
     CommonModule,
