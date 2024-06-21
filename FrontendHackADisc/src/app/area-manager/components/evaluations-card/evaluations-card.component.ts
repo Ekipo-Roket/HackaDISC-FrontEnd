@@ -23,15 +23,18 @@ export class EvaluationsCardComponent implements OnInit, AfterViewInit {
 
   condition: string = 'General';
 
-  constructor(private AreaService: AreaService, private router:Router) {}
+  constructor(private areaService: AreaService, private router: Router) {}
 
   ngOnInit(): void {
-    this.User = this.AreaService.getEvaluationUser();
-    if (!this.User) return;
+    this.areaService.userToEvaluate$.subscribe(user => {
+      this.User = user;
+    });
   }
 
   ngAfterViewInit(): void {
-    this.User = this.AreaService.getEvaluationUser();
+    this.areaService.userToEvaluate$.subscribe(user => {
+      this.User = user;
+    });
   }
 
   setCondition(condition: string): void {
