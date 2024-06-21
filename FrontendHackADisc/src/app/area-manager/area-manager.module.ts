@@ -8,6 +8,7 @@ import { VisualTableComponent } from './components/visual-table/visual-table.com
 import { FormsModule } from '@angular/forms';
 import { EvaluationsCardComponent } from './components/evaluations-card/evaluations-card.component';
 import { EvaluationsComponent } from './pages/evaluations/evaluations.component';
+import { CardListComponent } from './components/card-list/card-list.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { EvaluationsComponent } from './pages/evaluations/evaluations.component'
     PrincipalComponent,
     VisualTableComponent,
     EvaluationsCardComponent,
-    EvaluationsComponent
+    EvaluationsComponent,
+    CardListComponent
   ],
   imports: [
     CommonModule,

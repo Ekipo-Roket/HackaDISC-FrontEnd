@@ -1,0 +1,25 @@
+<!-- src/app/components/card-list/card-list.component.html -->
+<ul class="max-w-md divide-y shadow divide-gray-200">
+  <li class="pb-3 pt-2 rounded-t-lg font-bold sm:pb-4 text-center text-white" style="background-color: var(--primary-blue);">
+    Recientes
+  </li>
+  <li *ngFor="let card of cards" class="pb-3 py-2 sm:pb-4">
+    <div class="flex items-center space-x-4 rtl:space-x-reverse">
+      <div class="flex-shrink-0">
+        <img class="h-auto w-auto max-h-10 max-w-10"
+             src="https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png" alt="User">
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-sm font-medium text-gray-900 truncate">
+          {{ card.user_name }}
+        </p>
+        <p class="text-sm text-gray-500 truncate ">
+          {{ card.stat_name }}
+        </p>
+      </div>
+      <div class="inline-flex items-center pr-2 text-base font-semibold text-gray-900 dark:text-white">
+        {{ card.updated_at | date: 'dd/MM/yyyy'}}
+      </div>
+    </div>
+  </li>
+</ul>
