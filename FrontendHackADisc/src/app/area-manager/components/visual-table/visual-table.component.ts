@@ -128,17 +128,19 @@ export class VisualTableComponent implements OnInit {
     });
   }
 
+
   compareStats(recent: number, old: number): number {
     if (recent === old) return 0;
     else if (recent < old) return -1;
     else return 1;
   }
 
+
   aproveWorker(id: number){
     this.ChangeStatusService.changeToAproved(id);
   }
 
-
+ 
   evaluationCard(User: ResponseWorkersArea) {
     this.AreaService.setEvaluationUser(User);
     this.router.navigateByUrl('/area/evaluations');
