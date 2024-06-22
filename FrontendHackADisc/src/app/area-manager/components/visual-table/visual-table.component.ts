@@ -46,6 +46,7 @@ export class VisualTableComponent implements OnInit {
     this.search();
     this.getStats();
     this.updateStat(this.lastUpdate);
+    this.updateWorkers();
   }
 
 
@@ -137,6 +138,19 @@ export class VisualTableComponent implements OnInit {
 
   aproveWorker(User: ResponseWorkersArea){
     this.ChangeStatusService.changeToAproved(User);
+    this.updateWorkers();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
+  interventionWorker(User: ResponseWorkersArea)
+  {
+    this.ChangeStatusService.changeToInIntervention(User);
+    this.updateWorkers();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+
   }
 
 

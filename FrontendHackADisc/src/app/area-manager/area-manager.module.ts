@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { EvaluationsCardComponent } from './components/evaluations-card/evaluations-card.component';
 import { EvaluationsComponent } from './pages/evaluations/evaluations.component';
 import { CardListComponent } from './components/card-list/card-list.component';
+import { UploadModule } from '../upload/upload.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CardListComponent } from './components/card-list/card-list.component';
     CommonModule,
     SharedModule,
     AreaManagerRoutingModule,
-    FormsModule
+    FormsModule,
+    UploadModule
   ]
 })
 export class AreaManagerModule { }

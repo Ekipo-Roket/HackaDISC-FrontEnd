@@ -1,6 +1,7 @@
 <div class="relative overflow-x-auto sm:rounded-lg">
   <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
     <div class=" mb-5">
+
       <div class="flex flex-wrap justify-between gap-10">
         <button id="dropdownRadioButton"
           class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -395,7 +396,7 @@
 
           <!-- Acción -->
           <td class="px-6 py-4">
-            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Aprobar</button>
+            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Ver</button>
           </td>
         </tr>
       </tbody>
@@ -481,10 +482,26 @@
               </table>
             </div>
 
+
             <div class="mt-6 flex flex-wrap gap-5 justify-center">
-              <button (click)="aproveWorker(evaluationUser!)" type="button"
+              <div *ngIf="evaluationUser?.stat_id === 1">
+                <p class="text-left text-gray-500 mb-2">Inserte evidencias de la intervención</p>
+                <upload-dataset>
+
+                </upload-dataset>
+              </div>
+
+              <button *ngIf="evaluationUser?.stat_id === 2" (click)="aproveWorker(evaluationUser!)" type="button"
                 class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                 Aprobar
+              </button>
+              <button *ngIf="evaluationUser?.stat_id === 1" (click)="interventionWorker(evaluationUser!)" type="button"
+                class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Intervenir
+              </button>
+              <button *ngIf="evaluationUser?.stat_id === 3" (click)="interventionWorker(evaluationUser!)" type="button"
+                class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Intervenir
               </button>
               <button (click)="evaluationCard(evaluationUser!)" type="button"
                 class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700">

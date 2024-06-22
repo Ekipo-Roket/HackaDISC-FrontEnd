@@ -19,11 +19,11 @@ export class ChangeStatusService {
   constructor(private http: HttpClient, private router: Router) { }
 
 
-  changeToInIntervention(id: number){
+  changeToInIntervention(User: ResponseWorkersArea){
+    const id = User.id;
     this.http.post<ResponseLOGIN>(this.baseUrl + 'workers/change-status/in-intervention/' + id, {}).subscribe(
       (res) => {
         console.log(res);
-        this.router.navigate(['/intervention']);
       },
       (err: HttpErrorResponse) => {
         console.log(err);
