@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { ResponseLOGIN, User } from '../interfaces/ResponseAPI_Login';
 import { TokenService } from './token.service';
 import { Router } from '@angular/router';
+import { ResponseWorkersArea } from 'src/app/area-manager/interfaces/ResponseWorkersArea';
 
 
 @Injectable({
@@ -29,8 +30,8 @@ export class ChangeStatusService {
       }
     );
   }
-  changeToAproved(id: number){
-    console.log(id);
+  changeToAproved(User: ResponseWorkersArea){
+    const id = User.id;
     this.http.post<ResponseLOGIN>(this.baseUrl + `workers/change-status/intervened/${id}`, {}).subscribe(
       (res) => {
         console.log(res);

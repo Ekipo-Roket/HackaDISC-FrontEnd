@@ -21,12 +21,19 @@ interface EvaluationCompare {
 export class ChartComponent implements AfterViewInit, OnDestroy, OnInit {
   private root!: am5.Root;
   private subscription: Subscription = new Subscription();
+
   Evaluations: Evaluation[] = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private zone: NgZone, private areaService: AreaService) {}
 
   ngOnInit(): void {
-    this.subscription = this.areaService.userToEvaluate$.subscribe(user => {
+    this.Subscription()
+    console.log('EvaluationComponent initialized', this.Evaluations);
+
+  }
+
+  async Subscription() {
+    this.subscription = await this.areaService.userToEvaluate$.subscribe(user => {
       this.Evaluations = user?.evaluations || [];
       this.updateChart();
     });

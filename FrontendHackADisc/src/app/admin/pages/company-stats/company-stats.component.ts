@@ -15,16 +15,11 @@ export class CompanyStatsComponent implements OnInit{
 
   Company!: ResponseCompany;
   company_id: number = 0;
+
   ngOnInit(): void {
-
     this.company_id = this.route.snapshot.params['id'];
-
     console.log(this.company_id);
     this.getCompany();
-
-
-
-
   }
 
 

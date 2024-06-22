@@ -395,7 +395,7 @@
 
           <!-- Acción -->
           <td class="px-6 py-4">
-            <button (click)="aproveWorker(workers.id)" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Aprobar</button>
+            <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Aprobar</button>
           </td>
         </tr>
       </tbody>
@@ -482,10 +482,15 @@
             </div>
 
             <div class="mt-6 flex flex-wrap gap-5 justify-center">
-              <button (click)="evaluationCard(evaluationUser!)" type="button"
+              <button (click)="aproveWorker(evaluationUser!)" type="button"
                 class="text-white bg-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-100  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
+                Aprobar
+              </button>
+              <button (click)="evaluationCard(evaluationUser!)" type="button"
+                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700">
                 Ver evaluaciones
               </button>
+
               <button (click)="closeModalChange()" type="button"
                 class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-green-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                 Cerrar
