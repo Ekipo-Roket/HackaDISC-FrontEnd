@@ -6,25 +6,50 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { MulticompaniesService } from '../../services/multicompanies.service';
 import { ResponseCompanyStats } from '../../interfaces/ResponseCompanyStats';
 import { ActivatedRoute} from '@angular/router';
+import { initFlowbite, initTabs } from 'flowbite';
+import { ResponseCompany } from '../../interfaces/ResponseCompany';
+
 @Component({
   selector: 'company-stats-chart',
   templateUrl: './company-stats-chart.component.html',
   styleUrls: ['./company-stats-chart.component.css']
 })
 
-
-export class CompanyStatsChartComponent implements OnDestroy, OnInit {
+export class CompanyStatsChartComponent implements OnDestroy, OnInit, AfterViewInit{
   private root!: am5.Root;
   company_id: number = 0;
-
-
   Evaluations!: ResponseCompanyStats;
+
+  randomWorkersTotal: number = 0;
+  randomInterventionsTotal: number = 0;
+  randomChangesTotal: number = 0;
+  randomMonthsTotal: number = 0;
+
+  @Input() company!: ResponseCompany;
+
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private activated: ActivatedRoute, private zone: NgZone, private CompanyService: MulticompaniesService) {}
+
+  ngAfterViewInit() {
+    this.initializeFlowbite();
+  }
+
+  initializeFlowbite() {
+    initFlowbite();
+    initTabs();
+  }
+
   ngOnInit(): void {
     this.company_id = this.activated.snapshot.params['id'];
     this.getStats();
+    this.randomWorkersTotal = this.generateRandomNumber();
+    this.randomInterventionsTotal = this.generateRandomNumber();
+    this.randomChangesTotal = this.generateRandomNumber();
+    this.randomMonthsTotal = this.generateRandomNumber();
 
+  }
 
+  generateRandomNumber(): number {
+    return Math.floor(Math.random() * 100) + 1;
   }
 
   async getStats() {

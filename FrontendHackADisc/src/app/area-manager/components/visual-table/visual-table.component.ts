@@ -39,15 +39,12 @@ export class VisualTableComponent implements OnInit {
 
 
   constructor(private AreaService: AreaService, private ChangeStatusService: ChangeStatusService, private router:Router) {
-    this.ngOnInit();
-
   }
 
   ngOnInit(): void {
     this.company = localStorage.getItem('UserLogged') ? JSON.parse(localStorage.getItem('UserLogged') || '{}').area_id : '';
     this.search();
     this.getStats();
-
     this.updateStat(this.lastUpdate);
   }
 
