@@ -25,9 +25,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/flowbite/dist/flowbite.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/datepicker-full.min.js",
+              "node_modules/flowbite/dist/flowbite.js"
+          ]
           },
           "configurations": {
             "production": {
@@ -94,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "8d331292-324b-438b-ac01-91c46bb9548d"
   }
 }

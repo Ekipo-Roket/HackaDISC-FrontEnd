@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  flex-direction: row;
+}
+area-evaluations-card {
+  flex: 1;
+  margin-right: 10px; /* Espacio entre las columnas */
+}
+area-card-list {
+  flex: 2;
+}
